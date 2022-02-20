@@ -1,0 +1,117 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  font-family: "Segoe UI", "Roboto", sans-serif;
+  font-weight: 400;
+}
+
+.break {
+  flex-basis: 100%;
+  width: 0px;
+  height: 0px;
+  overflow: hidden;
+}
+
+.bar {
+  transition: height 0.35s cubic-bezier(0.22, 0.61, 0, 1.01);
+  bottom: 0px;
+}
+
+input[type="range"] {
+  background-color: white;
+  border-radius: 50px;
+}
+
+button {
+  display: inline-block;
+  padding: 0.2em 1.45em;
+  margin: 0.1em;
+  margin-left: 0.4em;
+  margin-right: 0.4em;
+  border: 0.15em solid #cccccc;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: "Segoe UI", "Roboto", sans-serif;
+  font-weight: 400;
+  color: #000000;
+  background-color: #dadada;
+  text-align: center;
+  position: relative;
+  border-radius: 50px;
+}
+
+button:enabled:hover,
+select:enabled:hover {
+  border-color: #7a7a7a;
+}
+
+:disabled {
+  background: #ffb3b3da;
+  background-color: #ffb3b3da;
+  cursor: not-allowed;
+}
+
+button:active {
+  background-color: #999999;
+}
+
+button,
+select {
+  height: 35px;
+}
+
+select {
+  box-sizing: border-box;
+  text-decoration: none;
+  font-weight: 400;
+  margin-top: 1.6px;
+  border-radius: 50px;
+  text-align: center;
+  background-color: #dadada;
+  border: 0.15em solid #cccccc;
+}
+
+select:disabled {
+  filter: saturate(300%);
+  font-weight: 500;
+}
+
+@media (max-width: 600px) {
+  button,
+  select {
+    font-size: 50%;
+    height: 17.5px;
+  }
+  a {
+    font-size: 50%;
+  }
+  select {
+    margin-top: 0.9px;
+  }
+}
+
+@media (color-scheme: dark) {
+  *,
+  button,
+  select {
+    color: white;
+  }
+  button,
+  select {
+    background-color: rgb(45, 55, 71);
+    border-color: rgb(35, 45, 51);
+  }
+  .bar {
+    opacity: 60%;
+  }
+  input[type="range"] {
+    background-color: rgb(25, 35, 51);
+    opacity: 40%;
+  }
+  :disabled {
+    background-color: darkred;
+    opacity: 40%;
+  }
+}
