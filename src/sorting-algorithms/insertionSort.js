@@ -16,7 +16,7 @@ function insertionSort(array) {
             array[currentPos + 1].color = "grey"
         }
         array[currentPos] = currentItem
-        array[currentPos].color = "green"
+        array[currentPos].color = "red"
         for (let x = 0; x < 3; x++) {
             steps.push(copy(array))
         } // pushing the same step 3 times so the visual change is more obvious

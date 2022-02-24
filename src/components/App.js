@@ -1,5 +1,8 @@
 import { useState } from "react"
 import '../App.css';
+import ColorKey from "./ColorKey"
+import Bars from "./Bars"
+import { ColorKeys }  from "./ColorKeys"
 import { bubbleSort } from "../sorting-algorithms/bubbleSort.js"
 import { selectionSort } from "../sorting-algorithms/selectionSort.js"
 import { insertionSort } from "../sorting-algorithms/insertionSort.js"
@@ -38,7 +41,7 @@ const algorithms = {
 }
 
 export default function App() {
-    const [debugMode, setDebugMode] = useState(true)
+    const [debugMode, setDebugMode] = useState(false)
     const [speed, setSpeed] = useState(25);
     const [array, setArray] = useState(fillArray(50))
     const [settingsDisabled, setSettingsDisabled] = useState(false)
@@ -71,16 +74,13 @@ export default function App() {
             <div className="grid place-items-center h-screen w-screen dark:bg-gray-800">
                 <div className="grid place-items-center">
                     <div className="bg-gray-100 p-[4%] rounded-2xl bottom-0 dark:bg-gray-700">
-                        <div className="min-h-[150px] h-[150px] w-[300px] sm:min-h-[300px] sm:h-[300px] sm:w-[600px] justify-center">
-                            {array.map(item => {
-                                return <div
-                                    key={item}
-                                    className="inline-block transition-[height] duration-[0.25s] ease-out bottom-0"
-                                    style={
-                                        { backgroundColor: item.color, width: `${100 / array.length}%`, minHeight: `${(item.value) * (100 / array.length)}%`, height: `${(item.value) * (100 / array.length)}%` }
-                                    }></div>
-                            })}
-                        </div>
+
+                        
+                        <Bars array={array} />
+                        
+
+                        <ColorKey colorKey={ColorKeys[algorithm]} />
+                        
 
                         <div className="flex flex-row justify-center mt-[3%]">
 

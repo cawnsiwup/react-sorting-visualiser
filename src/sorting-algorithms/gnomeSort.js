@@ -17,7 +17,7 @@ function gnomeSort(array) {
         }
         if (array[pos].value >= array[pos - 1].value) {
             if (found) {
-                array[pos].color = "green"
+                array[pos].color = "red"
                 steps.push(copy(array))
                 array[pos].color = "grey"
             }
