@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import '../App.css';
 import ColorKey from "./ColorKey"
 import Bars from "./Bars"
@@ -41,12 +41,15 @@ const algorithms = {
 }
 
 export default function App() {
-    const [debugMode, setDebugMode] = useState(false)
     const [speed, setSpeed] = useState(25);
     const [array, setArray] = useState(fillArray(50))
     const [settingsDisabled, setSettingsDisabled] = useState(false)
     const [sortDisabled, setSortDisabled] = useState(false)
     const [algorithm, setAlgorithm] = useState("bubbleSort")
+
+    useEffect(() => {
+        setArray(fillArray(50))
+    }, []) // play shyffling animation (really just a transition) when component loads (onMount), looks smoother when page refreshes
 
     async function handleAlgorithm(algorithm) {
         setSettingsDisabled(true)
@@ -54,7 +57,7 @@ export default function App() {
         let steps = algorithm(array)
         for (let i = 0; i < steps.length; i++) {
             setArray(steps[i])
-            await sleep((150 - (speed * 3)))
+            await sleep((50/speed) * 10)
         }
         setSettingsDisabled(false)
     }
@@ -90,14 +93,14 @@ export default function App() {
                             >Shuffle</button>
 
                             <select className="rounded-full" disabled={settingsDisabled} id="algorithm" onChange={((event) => setAlgorithm(event.target.value))}>
-                                <option value={"bubbleSort"}>Bubble Sort</option>
-                                <option value={"selectionSort"}>Selection Sort</option>
-                                <option value={"insertionSort"}>Insertion Sort</option>
-                                <option value={"mergeSort"}>Merge Sort</option>
-                                <option value={"quickSort"}>Quick Sort</option>
-                                <option value={"cocktailSort"}>Cocktail Sort</option>
-                                <option value={"shellSort"}>Shell Sort</option>
-                                <option value={"gnomeSort"}>Gnome Sort</option>
+                                <option value="bubbleSort">Bubble Sort</option>
+                                <option value="selectionSort">Selection Sort</option>
+                                <option value="insertionSort">Insertion Sort</option>
+                                <option value="mergeSort">Merge Sort</option>
+                                <option value="quickSort">Quick Sort</option>
+                                <option value="cocktailSort">Cocktail Sort</option>
+                                <option value="shellSort">Shell Sort</option>
+                                <option value="gnomeSort">Gnome Sort</option>
 
                             </select>
 
@@ -118,7 +121,7 @@ export default function App() {
 
                         <input className="ml-[10%] w-[35%]" name="speed-slider" type="range" min={1} max={50} value={speed} disabled={settingsDisabled} onInput={(e) => setSpeed(e.target.value)} />
 
-                        <input className="mr-[10%] w-[35%]" name="size-slider" type="range" min={10} max={debugMode ? 400 : 100} step={10} value={array.size} disabled={settingsDisabled} onInput={handleResize} />
+                        <input className="mr-[10%] w-[35%]" name="size-slider" type="range" min={10} max={100} step={10} value={array.size} disabled={settingsDisabled} onInput={handleResize} />
 
 
                     </div>
