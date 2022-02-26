@@ -12,6 +12,7 @@ import { shellSort } from "../sorting-algorithms/shellSort.js"
 import { gnomeSort } from "../sorting-algorithms/gnomeSort.js"
 import { quickSort } from "../sorting-algorithms/quickSort.js"
 
+
 function sleep(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms))
 }
@@ -20,7 +21,6 @@ function fillArray(length) {
     let e = new Array(length)
     for (let i = 0; i < length; i++) {
         e[i] = {
-            id: i,
             color: "grey",
             value: i + 1
         }
